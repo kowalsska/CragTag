@@ -1,0 +1,151 @@
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="false">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.magdakowalska.climbmap.AddClimbActivity">
+
+    <LinearLayout
+        android:id="@+id/topButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameBox"
+            android:text="Name the spot" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/datePicker"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="1dp"
+        android:gravity="center"
+        android:layout_below="@id/topButtons">
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:spinnersShown="true"
+            android:calendarViewShown="false"
+            android:endYear="2015"
+            android:id="@+id/datePicker2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/photoButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/datePicker">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAKE PICTURE"
+            android:id="@+id/button2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/locationConfirm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/photoButton">
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE ON THE MAP"
+            android:id="@+id/mapLocationSwitch"
+            android:checked="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/typeRadioButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/locationConfirm">
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/typeRadioGroup">
+         <TableRow>
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/trad"
+                android:text="TRAD" />
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/sport"
+                android:text="SPORT" />
+         </TableRow>
+         <TableRow>
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bouldering"
+                android:text="BOULDERING" />
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/winter"
+                android:text="WINTER" />
+         </TableRow>
+
+            </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/descrButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/typeRadioButtons">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD DESCRIPTION"
+            android:id="@+id/button3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/confirmButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/descrButton">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM"
+            android:id="@+id/button4" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+</ScrollView>

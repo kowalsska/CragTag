@@ -1,0 +1,114 @@
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.magdakowalska.climbmap.AddCragActivity">
+
+    <LinearLayout
+        android:id="@+id/nameBox"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cragName"
+            android:text="Name the crag" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/nameBox2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/nameBox"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rockType"
+            android:text="Type of rock" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/spinnerBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="1dp"
+        android:layout_below="@id/nameBox2"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="left"
+            android:textSize="20dp"
+            android:text="Faces:"/>
+        <Spinner
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:id="@+id/facesDirectionSpinner" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/locationToggle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/spinnerBox"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="left"
+            android:textSize="20dp"
+            android:text="Add to the map:"/>
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add current location"
+            android:id="@+id/toggleButton" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/featuresBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/locationToggle"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="left"
+            android:textSize="20dp"
+            android:text="Crag features:"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/confirmCragButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/featuresBox"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM"
+            android:id="@+id/buttonConfirmCrag" />
+    </LinearLayout>
+
+</RelativeLayout>
+</ScrollView>

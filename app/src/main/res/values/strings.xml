@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CragTag</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_location">AddLocationActivity</string>
+    <string name="title_activity_show_location">ShowLocationActivity</string>
+    <string name="title_activity_location_list">LocationListActivity</string>
+    <string name="title_activity_add_crag">AddCragActivity</string>
+    <string name="title_activity_add_climb">AddClimbActivity</string>
+    <string name="title_activity_add_climbing_spot">AddClimbingSpotActivity</string>
+    <string name="cragFestureDescr">Has great character with good protection.
+    Dubious safety work by the council has obliterated some old classic lines but there is
+    plenty left. Some of the rock is sublime.</string>
+
+    <string-array name="spinnerFaces">
+        <item>N</item>
+        <item>NE</item>
+        <item>E</item>
+        <item>SE</item>
+        <item>S</item>
+        <item>SW</item>
+        <item>W</item>
+        <item>NW</item>
+    </string-array>
+
+</resources>
