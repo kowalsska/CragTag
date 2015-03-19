@@ -15,6 +15,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +30,7 @@ public class MapsActivity extends FragmentActivity {
     private Marker myMarker;
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
     private Locations locations = new Locations();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +147,33 @@ public class MapsActivity extends FragmentActivity {
         if(i.getStringExtra("methodname").equals("zoomInToLocation")){
             zoomInToLocation(new LatLng(55.96972,-4.05389));
         }
+    }
+
+    public String loadJSONFromAsset() {
+
+        String json = null;
+
+        try {
+
+            InputStream is = getAssets().open("jsonCrags.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
     }
 
 

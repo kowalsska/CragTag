@@ -4,6 +4,8 @@ import android.graphics.Picture;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +20,8 @@ public class Locations {
     private Date someDate;
     private Picture photo;
     private String type;
+
+
 
     private ArrayList<HashMap<String, Object>> defaultCragLocationList = new ArrayList<HashMap<String, Object>>();
 
