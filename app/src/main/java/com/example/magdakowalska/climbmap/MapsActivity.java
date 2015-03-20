@@ -37,6 +37,7 @@ public class MapsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        locations.jsonToArraylist();
         defaultCragLocationList = locations.getDefaultCragLocationList();
 
         setUpMapIfNeeded();
@@ -133,7 +134,8 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                //TODO
+                Intent i = new Intent(getApplicationContext(), ShowLocationActivity.class);
+                startActivityForResult(i, 1);
             }
         });
     }

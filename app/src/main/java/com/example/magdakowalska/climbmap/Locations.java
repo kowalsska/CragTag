@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,10 +33,12 @@ public class Locations {
     SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
     String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
 
-    public ArrayList<HashMap<String, Object>> cragList = new ArrayList<HashMap<String, Object>>();
+    public ArrayList<HashMap<String, Object>> cragList;
 
 
     public void jsonToArraylist() {
+
+        cragList = new ArrayList<HashMap<String, Object>>();
 
         JSONObject obj = null;
         try {
@@ -170,10 +173,14 @@ public class Locations {
 
 
     public ArrayList<HashMap<String, Object>> getDefaultCragLocationList() {
+        System.out.println("number of crags in the arraylist: " + cragList.size());
         return cragList;
     }
 
-    public void addCragLocation(String name, String rocktype, String direction, LatLng location, String description){
-
+    //TODO
+    public void addCragLocation(String name, String rocktype, String faces,
+                                String latitude, String longitude, String description,
+                                ArrayList<HashMap<String, String>> climbs){
+        //ADDING NEW ENTRY TO THE ARRAYLIST
     }
 }

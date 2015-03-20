@@ -46,12 +46,40 @@
             ],
             "photos": []
         },
+
+        {
+            "name": "Super Quarry",
+            "rocktype": "Dolerite",
+            "faces": "S",
+            "latitude": 55.890710,
+            "longitude": -4.301584,
+            "description": "Has great character with good protection. Dubious safety work by the council has obliterated some old classic lines but there is plenty left. Some of the rock is sublime.",
+            "climbs": [
+                {
+                    "name": "Scream",
+                    "grade": "S 4b",
+                    "description": "The crack gives interesting and well protected climbing."
+                },
+                {
+                    "name": "Promontory Direct",
+                    "grade": "V1",
+                    "description": "Follow Blade Runner to the good ledge (top of the groove), then make a couple of awkward moves up the wall above. Step left and climb the prominent hand-crack, which is set in a little corner in its lower half."
+                },
+                {
+                    "name": "Trundle",
+                    "grade": "VS 4c",
+                    "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
+                }
+            ],
+            "photos": []
+        },
+
         {
             "name": "Slackdhu",
             "rocktype": "Dolerite",
             "faces": "SW",
-            "latitude": 55.96972,
-            "longitude": -4.05389,
+            "latitude": 56.00508,
+            "longitude": -4.31517,
             "description": "A quiet crag set in a spectacular position overlooking Glasgow and the Kilpatricks. The main escarpment is 100m high but exceptionally loose and grassy. Most of the climbing is on the square buttress at Jenny's Lum and offers low-grade routes of about 10m.",
             "climbs": [
                 {
