@@ -1,105 +1,75 @@
 {
- "crags": [
-
-    {
-        "name": "Court Knowe Quarry",
-        "rocktype": "Dolerite",
-        "faces": "SW",
-        "latitude": 55.81250,
-        "longitutde": -4.25472,
-        "description": "Limited but enjoyable climbing. Routes from 3 to Font 7a+. " +
-                        "Routes are slightly overgrown at top but the rock is generally sound. " +
-                        "Quarry consists of main face and two side walls. " +
-                        "The main face is roughly 8-9m high with several cracks, " +
-                        "left wall has two chimney routes (4a and 5a) and the right " +
-                        "wall offers various routes as well (though most are overgrown in summer). " +
-                        "Bouldering is possible but hindered by rocky landing on some routes " +
-                        "(plenty of mats and spotters needed). Graffiti on main wall suggests " +
-                        "potential conflict of usage between climbers and local kids.",
-        "climbs": [
-                   {
-                     "name": "Wullie's Crack",
-                     "grade": "V1"
-                     "description": "Good holds and polished footholds lead to a " +
-                                    "reach left to a thin crack then reach for the good ledges."
-                   },
-                   {
-                     "name": "Blue Tit's Left Hand",
-                     "grade": "V1"
-                     "description": "The arete on the far left, taken from the leaning wall side. " +
-                                    "Gain arete from a sit start on jugs and layback up to midway ledge, then " +
-                                    "highstep to flat holds and step out right onto ledge."
-                   },
-        ],
-        "photos": []
-    },
-
+    "crags": [
+        {
+            "name": "Court Knowe Quarry",
+            "rocktype": "Dolerite",
+            "faces": "SW",
+            "latitude": 55.81250,
+            "longitude": -4.25472,
+            "description": "Limited but enjoyable climbing.",
+            "climbs": [
+                {
+                    "name": "Wullie's Crack",
+                    "grade": "V1",
+                    "description": "Good holds and polished footholds lead to a reach left to a thin crack then reach for the good ledges."
+                },
+                {
+                    "name": "Blue Tit's Left Hand",
+                    "grade": "V1",
+                    "description": "The arete on the far left, taken from the leaning wall side. Gain arete from a sit start on jugs and layback up to midway ledge, then highstep to flat holds and step out right onto ledge."
+                }
+            ]
+        },
         {
             "name": "Auchinstarry Quarry",
             "rocktype": "Dolerite",
             "faces": "S",
             "latitude": 55.96972,
-            "longitutde": -4.05389,
-            "description": "Has great character with good protection. Dubious safety work " +
-                           "by the council has obliterated some old classic lines but there is plenty left. " +
-                           "Some of the rock is sublime.",
+            "longitude": -4.05389,
+            "description": "Has great character with good protection. Dubious safety work by the council has obliterated some old classic lines but there is plenty left. Some of the rock is sublime.",
             "climbs": [
-                       {
-                         "name": "Scream",
-                         "grade": "S 4b"
-                         "description": "The crack gives interesting and well protected climbing."
-                       },
-                       {
-                         "name": "Promontory Direct",
-                         "grade": "V1"
-                         "description": "Follow Blade Runner to the good ledge (top of the groove), " +
-                                        "then make a couple of awkward moves up the wall above. " +
-                                        "Step left and climb the prominent hand-crack, which is set " +
-                                        "in a little corner in its lower half."
-                       },
-                       {
-                         "name": "Trundle",
-                         "grade": "VS 4c"
-                         "description": "Climb the obvious crack on the left hand side of the slab." +
-                                        "Sustained climbing, fairly technical for 4c. " +
-                                        "Well protected, but placing gear may be awkward."
-                       }
+                {
+                    "name": "Scream",
+                    "grade": "S 4b",
+                    "description": "The crack gives interesting and well protected climbing."
+                },
+                {
+                    "name": "Promontory Direct",
+                    "grade": "V1",
+                    "description": "Follow Blade Runner to the good ledge (top of the groove), then make a couple of awkward moves up the wall above. Step left and climb the prominent hand-crack, which is set in a little corner in its lower half."
+                },
+                {
+                    "name": "Trundle",
+                    "grade": "VS 4c",
+                    "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
+                }
             ],
             "photos": []
         },
-
         {
             "name": "Slackdhu",
             "rocktype": "Dolerite",
             "faces": "SW",
             "latitude": 55.96972,
-            "longitutde": -4.05389,
-            "description": "A quiet crag set in a spectacular position overlooking Glasgow " +
-                           "and the Kilpatricks. The main escarpment is 100m " +
-                           "high but exceptionally loose and grassy. Most of " +
-                           "the climbing is on the square buttress at Jenny's " +
-                           "Lum and offers low-grade routes of about 10m.",
+            "longitude": -4.05389,
+            "description": "A quiet crag set in a spectacular position overlooking Glasgow and the Kilpatricks. The main escarpment is 100m high but exceptionally loose and grassy. Most of the climbing is on the square buttress at Jenny's Lum and offers low-grade routes of about 10m.",
             "climbs": [
-                       {
-                         "name": "Maya",
-                         "grade": "E1 5a"
-                         "description": "Climbs direct the face immediately left of Jenny's " +
-                                        "Lum Arete. Blind climbing and badly protected, though escapable."
-                       },
-                       {
-                         "name": "Jenny's Lum Arete",
-                         "grade": "HS 4b"
-                         "description": "Climbs the arete and obvious crack to the right."
-                       },
-                       {
-                         "name": "The Writings on the Wall",
-                         "grade": "E1 5b"
-                         "description": "Eliminate face between the Jenny's Lum Arete and Tendons " +
-                                        "cracks. Bold without the cracks for gear."
-                       }
-            ],
-            "photos": []
+                {
+                    "name": "Maya",
+                    "grade": "E1 5a",
+                    "description": "Climbs direct the face immediately left of Jenny's Lum Arete. Blind climbing and badly protected, though escapable."
+                },
+                {
+                    "name": "Jenny's Lum Arete",
+                    "grade": "HS 4b",
+                    "description": "Climbs the arete and obvious crack to the right."
+                },
+                {
+                    "name": "The Writings on the Wall",
+                    "grade": "E1 5b",
+                    "description": "Eliminate face between the Jenny's Lum Arete and Tendons cracks. Bold without the cracks for gear."
+                }
+            ]
         }
-
     ]
 }

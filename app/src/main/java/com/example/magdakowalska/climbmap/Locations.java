@@ -1,10 +1,14 @@
 package com.example.magdakowalska.climbmap;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Picture;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,76 +19,158 @@ import java.util.HashMap;
  */
 public class Locations {
 
-    private LatLng latLong;
-    private String name;
-    private Date someDate;
-    private Picture photo;
-    private String type;
+    private Context context;
+
+    public static MyApplication ma;
+
+    public Locations(Context context){
+        this.context = context;
+    }
+
+    Context c = ma.getInstance();
+
+    SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+    String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+
+    public ArrayList<HashMap<String, Object>> cragList = new ArrayList<HashMap<String, Object>>();
 
 
+    public void jsonToArraylist() {
 
-    private ArrayList<HashMap<String, Object>> defaultCragLocationList = new ArrayList<HashMap<String, Object>>();
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(jsonStringCrags);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray m_jArry = null;
+        try {
+            m_jArry = obj.getJSONArray("crags");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < m_jArry.length(); i++) {
+
+            HashMap<String, Object> singleCrag;
+
+            JSONObject jo_inside = null;
+            try {
+                jo_inside = m_jArry.getJSONObject(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(jo_inside.toString());
+
+            String crag_name = null;
+            try {
+                crag_name = jo_inside.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String crag_rocktype = null;
+            try {
+                crag_rocktype = jo_inside.getString("rocktype");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String crag_faces = null;
+            try {
+                crag_faces = jo_inside.getString("faces");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            double crag_latitude = 0;
+            try {
+                crag_latitude = jo_inside.getDouble("latitude");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            double crag_longitude = 0;
+            try {
+                crag_longitude = jo_inside.getDouble("longitude");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            LatLng crag_location = new LatLng(crag_latitude, crag_longitude);
+
+            String crag_description = null;
+            try {
+                crag_description = jo_inside.getString("description");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            JSONArray crag_climbs = null;
+            try {
+                crag_climbs = jo_inside.getJSONArray("climbs");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            ArrayList<HashMap<String, String>> climbList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> singleClimb = new HashMap<String, String>();
+            for (int j = 0; j < crag_climbs.length(); j++) {
+
+                JSONObject aClimb = null;
+                try {
+                    aClimb = crag_climbs.getJSONObject(j);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String climb_name = null;
+                try {
+                    climb_name = aClimb.getString("name");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String climb_grade = null;
+                try {
+                    climb_grade = aClimb.getString("grade");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String climb_description = null;
+                try {
+                    climb_description = aClimb.getString("description");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                singleClimb.put("name", climb_name);
+                singleClimb.put("grade", climb_grade);
+                singleClimb.put("description", climb_description);
+
+                climbList.add(singleClimb);
+
+            }
+
+            singleCrag = new HashMap<String, Object>();
+            singleCrag.put("name", crag_name);
+            singleCrag.put("rocktype", crag_rocktype);
+            singleCrag.put("faces", crag_name);
+            singleCrag.put("location", crag_location);
+            singleCrag.put("description", crag_description);
+            singleCrag.put("climbs", climbList);
+
+            cragList.add(singleCrag);
+        }
+
+    }
+
 
     public ArrayList<HashMap<String, Object>> getDefaultCragLocationList() {
-
-        ArrayList<String> location1Climbs = new ArrayList<String>();
-        ArrayList<String> location1Photos = new ArrayList<String>();
-        location1Climbs.add("Undercut Wall");
-        location1Climbs.add("Shield Bug");
-        HashMap<String, Object> location1 = new HashMap<String, Object>();
-        String data1 = "Limited but enjoyable climbing. Routes from 3 to Font 7a+.\n" +
-                "Routes are slightly overgrown at top but the rock is generally sound. " +
-                        "Quarry consists of main face and two side walls. " +
-                        "The main face is roughly 8-9m high with several cracks, " +
-                        "left wall has two chimney routes (4a and 5a) and the right " +
-                        "wall offers various routes as well (though most are overgrown in summer). " +
-                        "Bouldering is possible but hindered by rocky landing on some routes " +
-                        "(plenty of mats and spotters needed). Graffiti on main wall suggests " +
-                        "potential conflict of usage between climbers and local kids.";
-        location1.put("Name", "Court Knowe Quarry");
-        location1.put("Rocktype", "Dolerite");
-        location1.put("Faces", "SW");
-        location1.put("Location", new LatLng(55.81250,-4.25472));
-        location1.put("Description", data1);
-        location1.put("Climbs", location1Climbs);
-        location1.put("Photos", location1Photos);
-        defaultCragLocationList.add(location1);
-
-        HashMap<String, Object> location2 = new HashMap<String, Object>();
-        String data2 = "Limited but enjoyable climbing. Routes from 3 to Font 7a+.\n" +
-                "Routes are slightly overgrown at top but the rock is generally sound. " +
-                "Quarry consists of main face and two side walls. " +
-                "The main face is roughly 8-9m high with several cracks, " +
-                "left wall has two chimney routes (4a and 5a) and the right " +
-                "wall offers various routes as well (though most are overgrown in summer). " +
-                "Bouldering is possible but hindered by rocky landing on some routes " +
-                "(plenty of mats and spotters needed). Graffiti on main wall suggests " +
-                "potential conflict of usage between climbers and local kids.";
-        location2.put("Name", "Slackdhu");
-        location2.put("Rocktype", "Sandstone");
-        location2.put("Faces", "NW");
-        location2.put("Location", new LatLng(56.00508,-4.31517));
-        location2.put("Description", data2);
-        defaultCragLocationList.add(location2);
-
-        HashMap<String, Object> location3 = new HashMap<String, Object>();
-        String data3 = "Limited but enjoyable climbing. Routes from 3 to Font 7a+.\n" +
-                "Routes are slightly overgrown at top but the rock is generally sound. " +
-                "Quarry consists of main face and two side walls. " +
-                "The main face is roughly 8-9m high with several cracks, " +
-                "left wall has two chimney routes (4a and 5a) and the right " +
-                "wall offers various routes as well (though most are overgrown in summer). " +
-                "Bouldering is possible but hindered by rocky landing on some routes " +
-                "(plenty of mats and spotters needed). Graffiti on main wall suggests " +
-                "potential conflict of usage between climbers and local kids.";
-        location3.put("Name", "Auchinstarry Quarry");
-        location3.put("Rocktype", "Dolerite");
-        location3.put("Faces", "S");
-        location3.put("Location", new LatLng(55.96972,-4.05389));
-        location3.put("Description", data3);
-        defaultCragLocationList.add(location3);
-
-        return defaultCragLocationList;
+        return cragList;
     }
 
     public void addCragLocation(String name, String rocktype, String direction, LatLng location, String description){

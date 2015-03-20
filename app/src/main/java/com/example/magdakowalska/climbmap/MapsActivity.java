@@ -29,7 +29,7 @@ public class MapsActivity extends FragmentActivity {
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Marker myMarker;
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
-    private Locations locations = new Locations();
+    private Locations locations = new Locations(this);
 
 
     @Override
@@ -117,10 +117,11 @@ public class MapsActivity extends FragmentActivity {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
         for(HashMap location:defaultCragLocationList){
-            LatLng l = (LatLng)location.get("Location");
+            System.out.println("ADDING MARKER HERE");
+            LatLng l = (LatLng)location.get("location");
             mMap.addMarker(new MarkerOptions()
                 .position(l)
-                .title((String)location.get("Name"))
+                .title((String)location.get("name"))
             );
         }
 
@@ -149,32 +150,7 @@ public class MapsActivity extends FragmentActivity {
         }
     }
 
-    public String loadJSONFromAsset() {
 
-        String json = null;
-
-        try {
-
-            InputStream is = getAssets().open("jsonCrags.json");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-
-    }
 
 
 }
