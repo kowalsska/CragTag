@@ -23,11 +23,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private Marker myMarker;
+    private Marker currentLocationMarker;
+    private Marker locationMarker;
+    private Map<Marker, Integer> allMarkersMap = new HashMap<Marker, Integer>();
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
     private Locations locations = new Locations(this);
 
@@ -117,16 +120,17 @@ public class MapsActivity extends FragmentActivity {
         // Zoom in the Google Map
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
-        for(HashMap location:defaultCragLocationList){
-            System.out.println("ADDING MARKER HERE");
+        for(int i = 0; i < defaultCragLocationList.size(); i++){
+            HashMap location = defaultCragLocationList.get(i);
             LatLng l = (LatLng)location.get("location");
-            mMap.addMarker(new MarkerOptions()
+            locationMarker = mMap.addMarker(new MarkerOptions()
                 .position(l)
                 .title((String)location.get("name"))
             );
+            allMarkersMap.put(locationMarker, i);
         }
 
-        myMarker = mMap.addMarker(new MarkerOptions()
+        currentLocationMarker = mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(latitude, longitude))
                     .title("You are here!")
                     .snippet("Now go climbing!"));
@@ -134,8 +138,11 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Intent i = new Intent(getApplicationContext(), ShowLocationActivity.class);
-                startActivityForResult(i, 1);
+                Intent i = new Intent();
+                i.setClass(MapsActivity.this, ShowLocationActivity.class);
+                int markerIndex = allMarkersMap.get(marker);
+                i.putExtra("markerIndex", markerIndex);
+                MapsActivity.this.startActivity(i);
             }
         });
     }

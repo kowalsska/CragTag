@@ -161,7 +161,7 @@ public class Locations {
             singleCrag = new HashMap<String, Object>();
             singleCrag.put("name", crag_name);
             singleCrag.put("rocktype", crag_rocktype);
-            singleCrag.put("faces", crag_name);
+            singleCrag.put("faces", crag_faces);
             singleCrag.put("location", crag_location);
             singleCrag.put("description", crag_description);
             singleCrag.put("climbs", climbList);

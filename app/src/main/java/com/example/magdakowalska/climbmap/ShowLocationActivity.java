@@ -8,26 +8,58 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class ShowLocationActivity extends ActionBarActivity {
 
-    private String name;
-    private String rockType;
-    private String facesDir;
-    private String featuresDesc;
+    private TextView name;
+    private TextView rocktype;
+    private TextView faces;
+    private TextView location;
+    private TextView description;
     private ImageView photo1, photo2, photo3;
     private Button cragToMap;
+    public int cragIndex;
+    private ArrayList<HashMap<String, Object>> defaultCragLocationList;
+    private Locations locations = new Locations(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_location);
 
+        name = (TextView) findViewById(R.id.nameCrag);
+        rocktype = (TextView) findViewById(R.id.textView3);
+        faces = (TextView) findViewById(R.id.textView5);
+        location = (TextView) findViewById(R.id.textView7);
+        description = (TextView) findViewById(R.id.textView9);
         photo1 = (ImageView) findViewById(R.id.photo1);
         photo2 = (ImageView) findViewById(R.id.photo2);
         photo3 = (ImageView) findViewById(R.id.photo3);
         cragToMap = (Button) findViewById(R.id.cragToMap);
+
+        locations.jsonToArraylist();
+        defaultCragLocationList = locations.getDefaultCragLocationList();
+
+        Intent intent = this.getIntent();
+        if(intent != null) {
+            cragIndex = intent.getExtras().getInt("markerIndex");
+        }
+
+        HashMap<String, Object> cragToShow = defaultCragLocationList.get(cragIndex);
+
+        name.setText((String)cragToShow.get("name"));
+        rocktype.setText((String)cragToShow.get("rocktype"));
+        faces.setText((String)cragToShow.get("faces"));
+        location.setText((String)cragToShow.get("location").toString());
+        description.setText((String)cragToShow.get("description"));
+
+
 
         cragToMap.setOnClickListener(new View.OnClickListener() {
             @Override
