@@ -33,7 +33,6 @@ public class AddCragActivity extends ActionBarActivity {
     private TextView rocktypeView;
     private Spinner facesSpinner;
     private TextView featuresView;
-    private Button showClimbsButton;
     private Button confirmButton;
 
     private String jsonStringNewCrag;
@@ -58,7 +57,6 @@ public class AddCragActivity extends ActionBarActivity {
         rocktypeView = (TextView) findViewById(R.id.rockType);
         facesSpinner = (Spinner) findViewById(R.id.facesDirectionSpinner);
         featuresView = (TextView) findViewById(R.id.featuresTextView);
-        showClimbsButton = (Button) findViewById(R.id.climbsButton);
         confirmButton = (Button) findViewById(R.id.buttonConfirmCrag);
 
         //POPULATING THE SPINNER
@@ -82,14 +80,14 @@ public class AddCragActivity extends ActionBarActivity {
                 faces = facesSpinner.getSelectedItem().toString();
                 features = featuresView.getText().toString();
 
-                String jsonStringUpdate =  ",{" +
-                                    " \"name\": \"" + name + "\"," +
-                                    " \"rocktype\": \"" + rocktype + "\"," +
-                                    " \"faces\": \"" + faces + "\"," +
-                                    " \"latitude\": \"" + latitude + "\"," +
-                                    " \"longitude\": \"" + longitude + "\"," +
-                                    " \"description\": \"" + features + "\"," +
-                                    " \"climbs\": [] } ] }";
+                String jsonStringUpdate =  ",{\n" +
+                                    " \"name\": \"" + name + "\",\n" +
+                                    " \"rocktype\": \"" + rocktype + "\",\n" +
+                                    " \"faces\": \"" + faces + "\",\n" +
+                                    " \"latitude\": \"" + latitude + "\",\n" +
+                                    " \"longitude\": \"" + longitude + "\",\n" +
+                                    " \"description\": \"" + features + "\",\n" +
+                                    " \"climbs\": []\n}\n]\n}";
 
                 int startIndex = jsonStringNewCrag.lastIndexOf("]");
                 jsonStringNewCrag = jsonStringNewCrag.substring(0, startIndex - 1);

@@ -28,5 +28,6 @@
     <string name="title_activity_climb_list">ClimbListActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_show_climb">ShowClimbActivity</string>
 
 </resources>

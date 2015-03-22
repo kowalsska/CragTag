@@ -1,8 +1,6 @@
 package com.example.magdakowalska.climbmap;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Picture;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -10,9 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -56,8 +52,6 @@ public class Locations {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            System.out.println(jo_inside.toString());
 
             String crag_name = null;
             try {
@@ -111,8 +105,9 @@ public class Locations {
             }
 
             ArrayList<HashMap<String, String>> climbList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> singleClimb = new HashMap<String, String>();
             for (int j = 0; j < crag_climbs.length(); j++) {
+
+                HashMap<String, String> singleClimb = new HashMap<String, String>();
 
                 JSONObject aClimb = null;
                 try {
@@ -165,16 +160,9 @@ public class Locations {
 
     }
 
-
     public ArrayList<HashMap<String, Object>> getDefaultCragLocationList() {
-        System.out.println("number of crags in the arraylist: " + cragList.size());
         return cragList;
     }
 
-    //TODO
-    public void addCragLocation(String name, String rocktype, String faces,
-                                String latitude, String longitude, String description,
-                                ArrayList<HashMap<String, String>> climbs){
-        //ADDING NEW ENTRY TO THE ARRAYLIST
-    }
+
 }

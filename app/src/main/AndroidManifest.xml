@@ -65,6 +65,10 @@
             android:name=".ClimbListActivity"
             android:label="@string/title_activity_climb_list" >
         </activity>
+        <activity
+            android:name=".ShowClimbActivity"
+            android:label="@string/title_activity_show_climb" >
+        </activity>
     </application>
 
 </manifest>

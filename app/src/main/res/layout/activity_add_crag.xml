@@ -83,27 +83,12 @@
             android:maxLines="4"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/showClimbsButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:paddingBottom="10dp"
-        android:layout_below="@id/featuresBox"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CLIMBS IN THIS CRAG"
-            android:id="@+id/climbsButton" />
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/confirmCragButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="1dp"
         android:paddingBottom="10dp"
-        android:layout_below="@id/showClimbsButton"
+        android:layout_below="@id/featuresBox"
         android:gravity="center"
         android:orientation="horizontal">
         <Button

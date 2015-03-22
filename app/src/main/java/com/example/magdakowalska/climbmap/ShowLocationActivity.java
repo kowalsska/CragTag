@@ -25,7 +25,7 @@ public class ShowLocationActivity extends ActionBarActivity {
     private TextView location;
     private TextView description;
     private ImageView photo1, photo2, photo3;
-    private Button cragToMap;
+    private Button showClimbs;
     public int cragIndex;
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
     private Locations locations = new Locations();
@@ -45,7 +45,7 @@ public class ShowLocationActivity extends ActionBarActivity {
         photo1 = (ImageView) findViewById(R.id.photo1);
         photo2 = (ImageView) findViewById(R.id.photo2);
         photo3 = (ImageView) findViewById(R.id.photo3);
-        cragToMap = (Button) findViewById(R.id.cragToMap);
+        showClimbs = (Button) findViewById(R.id.showClimbs);
 
         Context c = ma.getInstance();
 
@@ -60,23 +60,24 @@ public class ShowLocationActivity extends ActionBarActivity {
             cragIndex = intent.getExtras().getInt("markerIndex");
         }
 
+
+
         cragToShow = defaultCragLocationList.get(cragIndex);
 
         name.setText((String)cragToShow.get("name"));
         rocktype.setText((String)cragToShow.get("rocktype"));
         faces.setText((String)cragToShow.get("faces"));
-        location.setText((String)cragToShow.get("location").toString());
+        String locationString = (String)cragToShow.get("latitude").toString() + "\n" + (String)cragToShow.get("longitude").toString();
+        location.setText((String)cragToShow.get("location").toString().substring(8));
         description.setText((String)cragToShow.get("description"));
 
 
 
-        cragToMap.setOnClickListener(new View.OnClickListener() {
+        showClimbs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), MapsActivity.class);
-                i.putExtra("methodname","zoomInToLocation");
-                i.putExtra("latitude", (double)cragToShow.get("latitude"));
-                i.putExtra("longitude", (double)cragToShow.get("longitude"));
+                Intent i = new Intent(v.getContext(), ClimbListActivity.class);
+                i.putExtra("cragIndex", cragIndex);
                 startActivity(i);
             }
         });

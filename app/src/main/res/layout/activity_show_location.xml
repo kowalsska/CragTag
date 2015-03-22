@@ -134,19 +134,18 @@
             android:background="@drawable/photo3"
             android:id="@+id/photo3"/>
     </LinearLayout>
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/photos"
         android:gravity="center"
-        android:id="@+id/butonCrag">
+        android:id="@+id/buttonClimb">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SHOW ON MAP"
-            android:id="@+id/cragToMap" />
+            android:text="CLIMBS IN THIS CRAG"
+            android:id="@+id/showClimbs" />
     </LinearLayout>
 </RelativeLayout>
 </ScrollView>
