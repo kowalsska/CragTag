@@ -21,7 +21,7 @@ public class ShowClimbActivity extends ActionBarActivity {
 
     public static MyApplication ma;
     private Locations locations = new Locations();
-    private HashMap<String, Object> climbToShow;
+    private HashMap climbToShow;
     public int climbIndex;
     public int cragIndex;
 

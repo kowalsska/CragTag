@@ -30,6 +30,9 @@ public class MapsActivity extends FragmentActivity {
     private Locations locations = new Locations();
     public static MyApplication ma;
 
+    public Double newLat;
+    public Double newLng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,28 @@ public class MapsActivity extends FragmentActivity {
         defaultCragLocationList = locations.getDefaultCragLocationList();
 
         setUpMapIfNeeded();
+
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("Add new crag here"));
+                Intent i = new Intent();
+                i.setClass(MapsActivity.this, AddCragActivity.class);
+                newLat = latLng.latitude;
+                newLng = latLng.longitude;
+                i.putExtra("latitude", latLng.latitude);
+                i.putExtra("longitude", latLng.longitude);
+                MapsActivity.this.startActivity(i);
+            }
+        });
+
+
+
     }
+
 
     @Override
     protected void onResume() {
@@ -136,10 +160,17 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent i = new Intent();
-                i.setClass(MapsActivity.this, ShowLocationActivity.class);
-                int markerIndex = allMarkersMap.get(marker);
-                i.putExtra("markerIndex", markerIndex);
-                MapsActivity.this.startActivity(i);
+                if(!marker.getTitle().equals("Add new crag here")) {
+                    i.setClass(MapsActivity.this, ShowLocationActivity.class);
+                    int markerIndex = allMarkersMap.get(marker);
+                    i.putExtra("markerIndex", markerIndex);
+                    MapsActivity.this.startActivity(i);
+                } else {
+                    i.setClass(MapsActivity.this, AddCragActivity.class);
+                    i.putExtra("latitude", newLat);
+                    i.putExtra("longitude", newLng);
+                    MapsActivity.this.startActivity(i);
+                }
             }
         });
     }
