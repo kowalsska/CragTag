@@ -1,6 +1,8 @@
 package com.example.magdakowalska.climbmap;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,7 +28,9 @@ public class ShowLocationActivity extends ActionBarActivity {
     private Button cragToMap;
     public int cragIndex;
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
-    private Locations locations = new Locations(this);
+    private Locations locations = new Locations();
+    private HashMap<String, Object> cragToShow;
+    public static MyApplication ma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,12 @@ public class ShowLocationActivity extends ActionBarActivity {
         photo3 = (ImageView) findViewById(R.id.photo3);
         cragToMap = (Button) findViewById(R.id.cragToMap);
 
-        locations.jsonToArraylist();
+        Context c = ma.getInstance();
+
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+
+        locations.jsonToArraylist(jsonStringCrags);
         defaultCragLocationList = locations.getDefaultCragLocationList();
 
         Intent intent = this.getIntent();
@@ -51,7 +60,7 @@ public class ShowLocationActivity extends ActionBarActivity {
             cragIndex = intent.getExtras().getInt("markerIndex");
         }
 
-        HashMap<String, Object> cragToShow = defaultCragLocationList.get(cragIndex);
+        cragToShow = defaultCragLocationList.get(cragIndex);
 
         name.setText((String)cragToShow.get("name"));
         rocktype.setText((String)cragToShow.get("rocktype"));
@@ -66,6 +75,8 @@ public class ShowLocationActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), MapsActivity.class);
                 i.putExtra("methodname","zoomInToLocation");
+                i.putExtra("latitude", (double)cragToShow.get("latitude"));
+                i.putExtra("longitude", (double)cragToShow.get("longitude"));
                 startActivity(i);
             }
         });

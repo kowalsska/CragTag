@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cragName"
-            android:text="Name the crag" />
+            android:hint="Name the crag" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/nameBox2"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rockType"
-            android:text="Type of rock" />
+            android:hint="Type of rock" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/spinnerBox"
@@ -57,10 +57,9 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:id="@+id/facesDirectionSpinner" />
-
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/locationToggle"
+        android:id="@+id/featuresBox"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="1dp"
@@ -72,27 +71,31 @@
             android:layout_height="100dp"
             android:layout_gravity="left"
             android:textSize="20dp"
-            android:text="Add to the map:"/>
-        <ToggleButton
-            android:layout_width="wrap_content"
+            android:text="Crag features:"/>
+        <EditText
+            android:id="@+id/featuresTextView"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:text="Add current location"
-            android:id="@+id/toggleButton" />
+            android:layout_weight="1"
+            android:hint="hint"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="4"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/featuresBox"
+        android:id="@+id/showClimbsButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="1dp"
         android:paddingBottom="10dp"
-        android:layout_below="@id/locationToggle"
+        android:layout_below="@id/featuresBox"
+        android:gravity="center"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="left"
-            android:textSize="20dp"
-            android:text="Crag features:"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLIMBS IN THIS CRAG"
+            android:id="@+id/climbsButton" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/confirmCragButton"
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="1dp"
         android:paddingBottom="10dp"
-        android:layout_below="@id/featuresBox"
+        android:layout_below="@id/showClimbsButton"
         android:gravity="center"
         android:orientation="horizontal">
         <Button

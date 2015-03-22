@@ -24,25 +24,17 @@ public class Locations {
 
     public static MyApplication ma;
 
-    public Locations(Context context){
-        this.context = context;
-    }
-
-    Context c = ma.getInstance();
-
-    SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-    String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
 
     public ArrayList<HashMap<String, Object>> cragList;
 
 
-    public void jsonToArraylist() {
+    public void jsonToArraylist(String jsonString) {
 
         cragList = new ArrayList<HashMap<String, Object>>();
 
         JSONObject obj = null;
         try {
-            obj = new JSONObject(jsonStringCrags);
+            obj = new JSONObject(jsonString);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -162,6 +154,8 @@ public class Locations {
             singleCrag.put("name", crag_name);
             singleCrag.put("rocktype", crag_rocktype);
             singleCrag.put("faces", crag_faces);
+            singleCrag.put("latitude", crag_latitude);
+            singleCrag.put("longitude", crag_longitude);
             singleCrag.put("location", crag_location);
             singleCrag.put("description", crag_description);
             singleCrag.put("climbs", climbList);

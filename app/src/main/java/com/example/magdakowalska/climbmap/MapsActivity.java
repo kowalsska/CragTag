@@ -2,6 +2,7 @@ package com.example.magdakowalska.climbmap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -15,12 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,15 +27,22 @@ public class MapsActivity extends FragmentActivity {
     private Marker locationMarker;
     private Map<Marker, Integer> allMarkersMap = new HashMap<Marker, Integer>();
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
-    private Locations locations = new Locations(this);
-
+    private Locations locations = new Locations();
+    public static MyApplication ma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        locations.jsonToArraylist();
+        Context c = ma.getInstance();
+
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+
+        //System.out.println(jsonStringCrags);
+
+        locations.jsonToArraylist(jsonStringCrags);
         defaultCragLocationList = locations.getDefaultCragLocationList();
 
         setUpMapIfNeeded();
@@ -130,11 +132,6 @@ public class MapsActivity extends FragmentActivity {
             allMarkersMap.put(locationMarker, i);
         }
 
-        currentLocationMarker = mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(latitude, longitude))
-                    .title("You are here!")
-                    .snippet("Now go climbing!"));
-
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -151,13 +148,6 @@ public class MapsActivity extends FragmentActivity {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(l));
     }
 
-    @Override
-    protected void onNewIntent(Intent i) {
-        super.onNewIntent(i);
-        if(i.getStringExtra("methodname").equals("zoomInToLocation")){
-            zoomInToLocation(new LatLng(55.96972,-4.05389));
-        }
-    }
 
 
 

@@ -1,30 +1,111 @@
 package com.example.magdakowalska.climbmap;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class AddCragActivity extends ActionBarActivity {
 
+    private String name;
+    private String rocktype;
+    private String faces;
+    private Double latitude;
+    private Double longitude;
+    private String features;
+
+    private TextView nameView;
+    private TextView rocktypeView;
     private Spinner facesSpinner;
+    private TextView featuresView;
+    private Button showClimbsButton;
+    private Button confirmButton;
+
+    private String jsonStringNewCrag;
+    private SharedPreferences.Editor editor;
+
+    public static MyApplication ma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_crag);
 
-        facesSpinner = (Spinner) findViewById( R.id.facesDirectionSpinner );
+        //LOADING SHARED PREFERENCES
+        Context c = ma.getInstance();
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        jsonStringNewCrag = prefs.getString("cragsStringFromJSON", null);
+        editor = prefs.edit();
+        editor.clear();
 
+        //LOADING FIELDS FROM LAYOUT
+        nameView = (TextView) findViewById(R.id.cragName);
+        rocktypeView = (TextView) findViewById(R.id.rockType);
+        facesSpinner = (Spinner) findViewById(R.id.facesDirectionSpinner);
+        featuresView = (TextView) findViewById(R.id.featuresTextView);
+        showClimbsButton = (Button) findViewById(R.id.climbsButton);
+        confirmButton = (Button) findViewById(R.id.buttonConfirmCrag);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource (
-                    this, R.array.spinnerFaces, android.R.layout.simple_spinner_item );
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_item );
+        //POPULATING THE SPINNER
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinnerFaces, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        facesSpinner.setAdapter(adapter);
 
-        facesSpinner.setAdapter( adapter );
+        //GETTING CURRENT LOCATION (LATITUDE AND LONGITUDE)
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, true);
+        Location myLocation = locationManager.getLastKnownLocation(provider);
+        latitude = myLocation.getLatitude();
+        longitude = myLocation.getLongitude();
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                name = nameView.getText().toString();
+                rocktype = rocktypeView.getText().toString();
+                faces = facesSpinner.getSelectedItem().toString();
+                features = featuresView.getText().toString();
+
+                String jsonStringUpdate =  ",{" +
+                                    " \"name\": \"" + name + "\"," +
+                                    " \"rocktype\": \"" + rocktype + "\"," +
+                                    " \"faces\": \"" + faces + "\"," +
+                                    " \"latitude\": \"" + latitude + "\"," +
+                                    " \"longitude\": \"" + longitude + "\"," +
+                                    " \"description\": \"" + features + "\"," +
+                                    " \"climbs\": [] } ] }";
+
+                int startIndex = jsonStringNewCrag.lastIndexOf("]");
+                jsonStringNewCrag = jsonStringNewCrag.substring(0, startIndex - 1);
+
+                jsonStringNewCrag += jsonStringUpdate;
+
+                editor.putString("cragsStringFromJSON", jsonStringNewCrag);
+                editor.apply();
+
+                Toast.makeText(getApplicationContext(), "New crag added!", Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(i, 1);
+            }
+        });
+
     }
 
 

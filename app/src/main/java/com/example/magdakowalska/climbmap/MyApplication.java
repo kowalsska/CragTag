@@ -21,7 +21,11 @@ public class MyApplication extends Application{
 
         SharedPreferences prefs = instance.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("cragsStringFromJSON", loadJSONFromAsset());
+        if(prefs.getString("cragsStringFromJSON", null) == null) {
+            editor.putString("cragsStringFromJSON", loadJSONFromAsset());
+        } else {
+            System.out.println("data is here");
+        }
         editor.commit();
 
 
