@@ -36,8 +36,8 @@ public class ShowClimbActivity extends ActionBarActivity {
 
         Context c = ma.getInstance();
 
-        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON1", null);
 
         locations.jsonToArraylist(jsonStringCrags);
 

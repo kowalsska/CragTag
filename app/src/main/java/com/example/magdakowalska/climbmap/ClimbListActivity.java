@@ -31,16 +31,20 @@ public class ClimbListActivity extends ListActivity {
     private Locations locations = new Locations();
     public ArrayList<HashMap<String, Object>> climbsList = new ArrayList<HashMap<String, Object>>();
     public int cragIndex;
+    private Button addClimb;
+    public String cragName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_climb_list);
 
+        addClimb = (Button) findViewById(R.id.addClimbButton);
+
         Context c = ma.getInstance();
 
-        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON1", null);
 
         locations.jsonToArraylist(jsonStringCrags);
         //defaultCragLocationList = locations.getDefaultCragLocationList();
@@ -51,6 +55,7 @@ public class ClimbListActivity extends ListActivity {
         }
 
         climbsList = (ArrayList)locations.getDefaultCragLocationList().get(cragIndex).get("climbs");
+        cragName = (String)locations.getDefaultCragLocationList().get(cragIndex).get("name");
 
         ArrayList<HashMap<String, Object>> climbsListData = new ArrayList<HashMap<String, Object>>();
 
@@ -85,6 +90,16 @@ public class ClimbListActivity extends ListActivity {
                 startActivity(in);
                 // Closing PlayListView
                 finish();
+            }
+        });
+
+        addClimb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setClass(ClimbListActivity.this, AddClimbActivity.class);
+                i.putExtra("cragName", cragName);
+                ClimbListActivity.this.startActivity(i);
             }
         });
 

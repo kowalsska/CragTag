@@ -19,14 +19,15 @@ public class MyApplication extends Application{
         super.onCreate();
         instance = this;
 
-        SharedPreferences prefs = instance.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        SharedPreferences prefs = instance.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        if(prefs.getString("cragsStringFromJSON", null) == null) {
-            editor.putString("cragsStringFromJSON", loadJSONFromAsset());
+        //editor.putString("cragsStringFromJSON1", loadJSONFromAsset());
+        if(prefs.getString("cragsStringFromJSON1", null) == null) {
+            editor.putString("cragsStringFromJSON1", loadJSONFromAsset());
         } else {
-            System.out.println("data is here");
+            System.out.println("data is already here");
         }
-        editor.commit();
+        editor.apply();
 
 
     }

@@ -23,58 +23,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameBox"
-            android:text="Name the spot" />
+            android:hint="Name the climb" />
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/datePicker"
+        android:id="@+id/gradeView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="1dp"
-        android:gravity="center"
-        android:layout_below="@id/topButtons">
-        <DatePicker
-            android:layout_width="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/topButtons"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
-            android:spinnersShown="true"
-            android:calendarViewShown="false"
-            android:endYear="2015"
-            android:id="@+id/datePicker2" />
+            android:id="@+id/climbGrade"
+            android:hint="Grade" />
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/photoButton"
+        android:id="@+id/descriptionBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/gradeView"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Add description"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="4"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/photoButtonView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:gravity="center"
-        android:layout_below="@id/datePicker">
+        android:layout_below="@id/descriptionBox">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TAKE PICTURE"
-            android:id="@+id/button2" />
+            android:text="ADD PHOTO"
+            android:id="@+id/photoButton" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/locationConfirm"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center"
-        android:layout_below="@id/photoButton">
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAVE ON THE MAP"
-            android:id="@+id/mapLocationSwitch"
-            android:checked="false" />
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/typeRadioButtons"
         android:layout_width="fill_parent"
@@ -82,8 +78,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:gravity="center"
-        android:layout_below="@id/locationConfirm">
-
+        android:layout_below="@id/photoButtonView">
         <RadioGroup
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -115,22 +110,6 @@
 
             </RadioGroup>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/descrButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center"
-        android:layout_below="@id/typeRadioButtons">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD DESCRIPTION"
-            android:id="@+id/button3" />
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/confirmButton"
         android:layout_width="fill_parent"
@@ -138,7 +117,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:gravity="center"
-        android:layout_below="@id/descrButton">
+        android:layout_below="@id/typeRadioButtons">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

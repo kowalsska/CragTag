@@ -49,8 +49,8 @@ public class ShowLocationActivity extends ActionBarActivity {
 
         Context c = ma.getInstance();
 
-        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON1", null);
 
         locations.jsonToArraylist(jsonStringCrags);
         defaultCragLocationList = locations.getDefaultCragLocationList();
@@ -59,8 +59,6 @@ public class ShowLocationActivity extends ActionBarActivity {
         if(intent != null) {
             cragIndex = intent.getExtras().getInt("markerIndex");
         }
-
-
 
         cragToShow = defaultCragLocationList.get(cragIndex);
 
@@ -84,7 +82,6 @@ public class ShowLocationActivity extends ActionBarActivity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

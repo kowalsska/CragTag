@@ -39,8 +39,8 @@ public class MapsActivity extends FragmentActivity {
 
         Context c = ma.getInstance();
 
-        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String jsonStringCrags = prefs.getString("cragsStringFromJSON", null);
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        String jsonStringCrags = prefs.getString("cragsStringFromJSON1", null);
 
         //System.out.println(jsonStringCrags);
 
@@ -62,6 +62,7 @@ public class MapsActivity extends FragmentActivity {
                 newLng = latLng.longitude;
                 i.putExtra("latitude", latLng.latitude);
                 i.putExtra("longitude", latLng.longitude);
+                //System.out.println("THIS PLACE HAVE LATITUDE: " + newLat + " AND LONGITUDE " + newLng);
                 MapsActivity.this.startActivity(i);
             }
         });
@@ -173,13 +174,5 @@ public class MapsActivity extends FragmentActivity {
             }
         });
     }
-
-    private void zoomInToLocation(LatLng l){
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(l));
-    }
-
-
-
-
 
 }

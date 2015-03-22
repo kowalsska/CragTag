@@ -17,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 
@@ -47,8 +50,8 @@ public class AddCragActivity extends ActionBarActivity {
 
         //LOADING SHARED PREFERENCES
         Context c = ma.getInstance();
-        SharedPreferences prefs = c.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        jsonStringNewCrag = prefs.getString("cragsStringFromJSON", null);
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        jsonStringNewCrag = prefs.getString("cragsStringFromJSON1", null);
         editor = prefs.edit();
         editor.clear();
 
@@ -64,13 +67,26 @@ public class AddCragActivity extends ActionBarActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         facesSpinner.setAdapter(adapter);
 
-        //GETTING CURRENT LOCATION (LATITUDE AND LONGITUDE)
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria, true);
-        Location myLocation = locationManager.getLastKnownLocation(provider);
-        latitude = myLocation.getLatitude();
-        longitude = myLocation.getLongitude();
+        //GET THE INTENT
+        Intent intent = this.getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null){
+            if(intent.getExtras().containsKey("latitude") && intent.getExtras().containsKey("longitude")) {
+                latitude = intent.getExtras().getDouble("latitude");
+                longitude = intent.getExtras().getDouble("longitude");
+            }
+        } else {
+            //GETTING CURRENT LOCATION (LATITUDE AND LONGITUDE)
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, true);
+            Location myLocation = locationManager.getLastKnownLocation(provider);
+            latitude = myLocation.getLatitude();
+            longitude = myLocation.getLongitude();
+        }
+
+
+
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,21 +96,38 @@ public class AddCragActivity extends ActionBarActivity {
                 faces = facesSpinner.getSelectedItem().toString();
                 features = featuresView.getText().toString();
 
-                String jsonStringUpdate =  ",{\n" +
-                                    " \"name\": \"" + name + "\",\n" +
-                                    " \"rocktype\": \"" + rocktype + "\",\n" +
-                                    " \"faces\": \"" + faces + "\",\n" +
-                                    " \"latitude\": \"" + latitude + "\",\n" +
-                                    " \"longitude\": \"" + longitude + "\",\n" +
-                                    " \"description\": \"" + features + "\",\n" +
-                                    " \"climbs\": []\n}\n]\n}";
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(jsonStringNewCrag);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                int startIndex = jsonStringNewCrag.lastIndexOf("]");
-                jsonStringNewCrag = jsonStringNewCrag.substring(0, startIndex - 1);
+                JSONArray jsonMainArray = null;
+                try {
+                    jsonMainArray = obj.getJSONArray("crags");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                jsonStringNewCrag += jsonStringUpdate;
+                JSONObject jsonCrag = new JSONObject();
+                JSONArray climbsArray = new JSONArray();
+                try {
+                    jsonCrag.put("name", name);
+                    jsonCrag.put("rocktype", rocktype);
+                    jsonCrag.put("faces", faces);
+                    jsonCrag.put("latitude", latitude);
+                    jsonCrag.put("longitude", longitude);
+                    jsonCrag.put("description", features);
+                    jsonCrag.put("climbs", climbsArray);
 
-                editor.putString("cragsStringFromJSON", jsonStringNewCrag);
+                    jsonMainArray.put(jsonCrag);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                editor.putString("cragsStringFromJSON1", obj.toString());
                 editor.apply();
 
                 Toast.makeText(getApplicationContext(), "New crag added!", Toast.LENGTH_LONG).show();

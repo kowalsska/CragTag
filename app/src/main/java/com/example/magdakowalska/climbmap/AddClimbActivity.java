@@ -2,6 +2,7 @@ package com.example.magdakowalska.climbmap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.*;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,9 +13,18 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,19 +32,28 @@ import java.util.HashMap;
 
 public class AddClimbActivity extends ActionBarActivity {
 
-    private EditText spotNameBox;
-    private String spotName;
-    private Button photoButton;
-    private Button descriptionButton;
-    private Switch putOnMapSwitch;
-    private DatePicker datePicker;
-    private int year;
-    private int month;
-    private int day;
+    private String climbName;
+    private String climbGrade;
+    private String climbDescription;
+    private String climbPhotoPath;
+    private int climbType;
+
+    private TextView nameBox;
+    private TextView gradeBox;
+    private TextView descriptionBox;
+    private Button takePhoto;
+    private RadioGroup typeRadioButtons;
     private Button confirmButton;
 
-    private ArrayList<HashMap<String, String[]>> locations =
-            new ArrayList<HashMap<String, String[]>>();
+    private String jsonStringNewCrag;
+    private SharedPreferences.Editor editor;
+
+    public static MyApplication ma;
+
+    public String cragName;
+
+    public JSONArray jsonMainArray;
+    public int indexCragToUpdate;
 
 
     @Override
@@ -42,57 +61,107 @@ public class AddClimbActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_climb);
 
-        spotNameBox = (EditText) findViewById(R.id.nameBox);
-        photoButton = (Button) findViewById(R.id.button2);
-        descriptionButton = (Button) findViewById(R.id.button3);
-        putOnMapSwitch = (Switch) findViewById(R.id.mapLocationSwitch);
-        datePicker = (DatePicker) findViewById(R.id.datePicker2);
+        //LOADING SHARED PREFERENCES
+        Context c = ma.getInstance();
+        SharedPreferences prefs = c.getSharedPreferences("myPrefs1", Context.MODE_PRIVATE);
+        jsonStringNewCrag = prefs.getString("cragsStringFromJSON1", null);
+        editor = prefs.edit();
+        editor.clear();
+
+        nameBox = (TextView) findViewById(R.id.nameBox);
+        gradeBox = (TextView) findViewById(R.id.climbGrade);
+        descriptionBox = (TextView) findViewById(R.id.descriptionTextView);
+        takePhoto = (Button) findViewById(R.id.photoButton);
+        typeRadioButtons = (RadioGroup) findViewById(R.id.typeRadioGroup);
         confirmButton = (Button) findViewById(R.id.button4);
 
-        spotName = spotNameBox.getText().toString();
+        Intent intent = this.getIntent();
+        if(intent != null) {
+            cragName = intent.getExtras().getString("cragName");
+        }
 
-        photoButton.setOnClickListener(new View.OnClickListener() {
+
+
+        takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivityForResult(i, 1);
-
             }
         });
 
-        putOnMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    // Get LocationManager object from System Service LOCATION_SERVICE
-                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            public void onClick(View v) {
+                climbName = nameBox.getText().toString();
+                climbGrade = gradeBox.getText().toString();
+                climbDescription = descriptionBox.getText().toString();
+                climbType = typeRadioButtons.getCheckedRadioButtonId();
 
-                    // Create a criteria object to retrieve provider
-                    Criteria criteria = new Criteria();
-
-                    // Get the name of the best provider
-                    String provider = locationManager.getBestProvider(criteria, true);
-
-                    // Get Current Location
-                    android.location.Location myLocation = locationManager.getLastKnownLocation(provider);
-
-                    // Get latitude of the current location
-                    double latitude = myLocation.getLatitude();
-
-                    // Get longitude of the current location
-                    double longitude = myLocation.getLongitude();
-
-                    // Create a LatLng object for the current location
-                    LatLng latLng = new LatLng(latitude, longitude);
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(jsonStringNewCrag);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
+                jsonMainArray = null;
+                try {
+                    jsonMainArray = obj.getJSONArray("crags");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                for (int i = 0; i < jsonMainArray.length(); i++) {
+
+                    JSONObject singleCrag = null;
+                    try {
+                        singleCrag = jsonMainArray.getJSONObject(i);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        if(singleCrag.getString("name").equals(cragName)){
+                            indexCragToUpdate = i;
+                            System.out.println("THE CRAGS index: " + indexCragToUpdate + " name: " + cragName);
+                            break;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                JSONObject newClimb = new JSONObject();
+                JSONArray climbsArray = new JSONArray();
+                try {
+                    climbsArray = jsonMainArray.getJSONObject(indexCragToUpdate).getJSONArray("climbs");
+                    System.out.println("THIS ARRAY: " + climbsArray.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    newClimb.put("name", climbName);
+                    newClimb.put("grade", climbGrade);
+                    newClimb.put("description", climbDescription);
+
+                    climbsArray.put(newClimb);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                editor.putString("cragsStringFromJSON1", obj.toString());
+                editor.apply();
+
+                Toast.makeText(getApplicationContext(), "New climb added!", Toast.LENGTH_LONG).show();
+
+                finish();
+
+
             }
         });
-    }
 
-    public void onDateChanged (DatePicker datePicker, int year, int monthOfYear, int dayOfMonth){
-        this.year = year;
-        this.month = monthOfYear;
-        this.day = dayOfMonth;
+
     }
 
 
