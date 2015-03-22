@@ -23,12 +23,11 @@ import java.util.Map;
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private Marker currentLocationMarker;
     private Marker locationMarker;
-    private Map<Marker, Integer> allMarkersMap = new HashMap<Marker, Integer>();
+    private Map<Marker, Integer> allMarkersMap = new HashMap<>();
     private ArrayList<HashMap<String, Object>> defaultCragLocationList;
     private Locations locations = new Locations();
-    public static MyApplication ma;
+    public MyApplication ma;
 
     public Double newLat;
     public Double newLng;

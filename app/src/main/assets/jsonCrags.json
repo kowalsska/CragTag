@@ -43,10 +43,8 @@
                     "grade": "VS 4c",
                     "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
                 }
-            ],
-            "photos": []
+            ]
         },
-
         {
             "name": "Super Quarry",
             "rocktype": "Dolerite",
@@ -70,10 +68,43 @@
                     "grade": "VS 4c",
                     "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
                 }
-            ],
-            "photos": []
+            ]
         },
-
+        {
+            "name": "Neilston Quarry",
+            "rocktype": "Dolerite",
+            "faces": "W",
+            "latitude": 55.77139,
+            "longitude": -4.43417,
+            "description": "An OK wee crag on summer's evening for bouldering, top roping or leading. Willie's Route (S) is good but a tad bold at the top for those new to leading. Punk Rock (HVS 5a) is a good technical route taking a steep pillar past an in-situ engineering nut. Fornication (VS) has a fair bit of loose rock so beware. Strawberry Crack is good but short.",
+            "climbs": [
+                {
+                    "name": "Left and Left",
+                    "grade": "S",
+                    "description": "15m. On the far left side, the slab of rock directly ahead to the left when walking up from road by the path. Start from the lowest rock and head up in a diagonal line to left; this leads you through the slabs all the way up. Easier rock may be reached if you stray off line. Some loose rock,but generally sound. "
+                },
+                {
+                    "name": "Right-Angled Corner",
+                    "grade": "-",
+                    "description": "No description."
+                },
+                {
+                    "name": "Girdle Traverse",
+                    "grade": "-",
+                    "description": "Must have been done before now - Step onto the dark bouldering wall to the left and below Juggy crack and make way rightwards to end at base of Peg Leg - feet about between 1 and 2 meters off ground. A few entertaining blind moves but plenty of rests."
+                },
+                {
+                    "name": "Peg Leg",
+                    "grade": "HVS 5b",
+                    "description": "2m. The once pegged crack on the extreme right of the Quarry. Also given f5+ as a Boulder problem."
+                },
+                {
+                    "name": "Ally's Gash",
+                    "grade": "f5+ / V2",
+                    "description": "8m. Climb easily into the corner between Kirsteen's Crack and Polish Direct and move directly up over the overhang."
+                }
+            ]
+        },
         {
             "name": "Slackdhu",
             "rocktype": "Dolerite",
