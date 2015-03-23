@@ -12,7 +12,7 @@ import android.widget.Button;
 public class AddClimbingSpotActivity extends ActionBarActivity {
 
     private Button cragButton;
-    private Button climbButton;
+    private Button instrButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class AddClimbingSpotActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_climbing_spot);
 
         cragButton = (Button) findViewById(R.id.button6);
-        climbButton = (Button) findViewById(R.id.button5);
+        instrButton = (Button) findViewById(R.id.button5);
 
         cragButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,10 +30,10 @@ public class AddClimbingSpotActivity extends ActionBarActivity {
             }
         });
 
-        climbButton.setOnClickListener(new View.OnClickListener() {
+        instrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), AddClimbActivity.class);
+                Intent i = new Intent(getApplicationContext(), Instructions.class);
                 startActivityForResult(i, 0);
             }
         });

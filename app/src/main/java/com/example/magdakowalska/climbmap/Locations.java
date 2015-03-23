@@ -130,6 +130,13 @@ public class Locations {
                     e.printStackTrace();
                 }
 
+                String climb_type = null;
+                try {
+                    climb_type = aClimb.getString("type");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 String climb_description = null;
                 try {
                     climb_description = aClimb.getString("description");
@@ -139,6 +146,7 @@ public class Locations {
 
                 singleClimb.put("name", climb_name);
                 singleClimb.put("grade", climb_grade);
+                singleClimb.put("type", climb_type);
                 singleClimb.put("description", climb_description);
 
                 climbList.add(singleClimb);

@@ -14,6 +14,17 @@
     <string name="cragFestureDescr">Has great character with good protection.
     Dubious safety work by the council has obliterated some old classic lines but there is
     plenty left. Some of the rock is sublime.</string>
+    <string name="instructions">
+        TO ADD NEW CLIMBING SPOT \n \n
+        Firstly add a new crag. You can do it in two ways:\n\n
+        1. Go to the map and hold your finger on the spot where you wish to tag a new crag\n
+        2. Go back from this screen and click \"Add a crag\" to save the crag to your current location\n\n
+        To add a climb \n
+        Go to the map, find a crag you want to update, click on its name, click \"Climbs in this crag\" and \"Add climb\"
+        \n\n\n
+        © Magda Kowalska
+    </string>
+
 
     <string-array name="spinnerFaces">
         <item>N</item>
@@ -29,5 +40,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_show_climb">ShowClimbActivity</string>
+    <string name="title_activity_instructions">Instructions</string>
 
 </resources>

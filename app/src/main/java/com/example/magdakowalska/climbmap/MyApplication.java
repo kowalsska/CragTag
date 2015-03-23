@@ -2,6 +2,7 @@ package com.example.magdakowalska.climbmap;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class MyApplication extends Application{
         if(prefs.getString("cragsStringFromJSON1", null) == null) {
             editor.putString("cragsStringFromJSON1", loadJSONFromAsset());
         } else {
-            System.out.println("data is already here");
+            //System.out.println("data is already here");
         }
         editor.apply();
 
@@ -62,5 +63,7 @@ public class MyApplication extends Application{
 
         return json;
     }
+
+
 
 }

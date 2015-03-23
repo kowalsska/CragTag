@@ -11,11 +11,13 @@
                 {
                     "name": "Wullie's Crack",
                     "grade": "V1",
+                    "type": "Trad",
                     "description": "Good holds and polished footholds lead to a reach left to a thin crack then reach for the good ledges."
                 },
                 {
                     "name": "Blue Tit's Left Hand",
                     "grade": "V1",
+                    "type": "Trad",
                     "description": "The arete on the far left, taken from the leaning wall side. Gain arete from a sit start on jugs and layback up to midway ledge, then highstep to flat holds and step out right onto ledge."
                 }
             ]
@@ -31,16 +33,19 @@
                 {
                     "name": "Scream",
                     "grade": "S 4b",
+                    "type": "Trad",
                     "description": "The crack gives interesting and well protected climbing."
                 },
                 {
                     "name": "Promontory Direct",
                     "grade": "V1",
+                    "type": "Trad",
                     "description": "Follow Blade Runner to the good ledge (top of the groove), then make a couple of awkward moves up the wall above. Step left and climb the prominent hand-crack, which is set in a little corner in its lower half."
                 },
                 {
                     "name": "Trundle",
                     "grade": "VS 4c",
+                    "type": "Trad",
                     "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
                 }
             ]
@@ -56,16 +61,19 @@
                 {
                     "name": "Scream",
                     "grade": "S 4b",
+                    "type": "Trad",
                     "description": "The crack gives interesting and well protected climbing."
                 },
                 {
                     "name": "Promontory Direct",
                     "grade": "V1",
+                    "type": "Trad",
                     "description": "Follow Blade Runner to the good ledge (top of the groove), then make a couple of awkward moves up the wall above. Step left and climb the prominent hand-crack, which is set in a little corner in its lower half."
                 },
                 {
                     "name": "Trundle",
                     "grade": "VS 4c",
+                    "type": "Trad",
                     "description": "Climb the obvious crack on the left hand side of the slab. Sustained climbing, fairly technical for 4c. Well protected, but placing gear may be awkward."
                 }
             ]
@@ -81,26 +89,31 @@
                 {
                     "name": "Left and Left",
                     "grade": "S",
+                    "type": "Trad",
                     "description": "15m. On the far left side, the slab of rock directly ahead to the left when walking up from road by the path. Start from the lowest rock and head up in a diagonal line to left; this leads you through the slabs all the way up. Easier rock may be reached if you stray off line. Some loose rock,but generally sound. "
                 },
                 {
                     "name": "Right-Angled Corner",
                     "grade": "-",
+                    "type": "Trad",
                     "description": "No description."
                 },
                 {
                     "name": "Girdle Traverse",
                     "grade": "-",
+                    "type": "Trad",
                     "description": "Must have been done before now - Step onto the dark bouldering wall to the left and below Juggy crack and make way rightwards to end at base of Peg Leg - feet about between 1 and 2 meters off ground. A few entertaining blind moves but plenty of rests."
                 },
                 {
                     "name": "Peg Leg",
                     "grade": "HVS 5b",
+                    "type": "Trad",
                     "description": "2m. The once pegged crack on the extreme right of the Quarry. Also given f5+ as a Boulder problem."
                 },
                 {
                     "name": "Ally's Gash",
                     "grade": "f5+ / V2",
+                    "type": "Trad",
                     "description": "8m. Climb easily into the corner between Kirsteen's Crack and Polish Direct and move directly up over the overhang."
                 }
             ]
@@ -116,16 +129,19 @@
                 {
                     "name": "Maya",
                     "grade": "E1 5a",
+                    "type": "Trad",
                     "description": "Climbs direct the face immediately left of Jenny's Lum Arete. Blind climbing and badly protected, though escapable."
                 },
                 {
                     "name": "Jenny's Lum Arete",
                     "grade": "HS 4b",
+                    "type": "Trad",
                     "description": "Climbs the arete and obvious crack to the right."
                 },
                 {
                     "name": "The Writings on the Wall",
                     "grade": "E1 5b",
+                    "type": "Trad",
                     "description": "Eliminate face between the Jenny's Lum Arete and Tendons cracks. Bold without the cracks for gear."
                 }
             ]

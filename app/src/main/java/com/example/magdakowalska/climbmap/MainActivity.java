@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
         addSpotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), AddClimbingSpotActivity.class);
+                Intent i = new Intent(getApplicationContext(), AddCragActivity.class);
                 startActivityForResult(i, 1);
             }
         });
@@ -59,13 +59,15 @@ public class MainActivity extends ActionBarActivity {
         listLocationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ShowLocationActivity.class);
+                Intent i = new Intent(getApplicationContext(), Instructions.class);
                 startActivityForResult(i, 1);
             }
         });
 
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

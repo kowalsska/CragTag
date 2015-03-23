@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -36,14 +37,22 @@ public class AddClimbActivity extends ActionBarActivity {
     private String climbGrade;
     private String climbDescription;
     private String climbPhotoPath;
-    private int climbType;
+    private String climbType;
 
     private TextView nameBox;
     private TextView gradeBox;
     private TextView descriptionBox;
     private Button takePhoto;
-    private RadioGroup typeRadioButtons;
+    private RadioGroup radioGroup;
+
+    private RadioButton trad;
+    private RadioButton boulder;
+    private RadioButton winter;
+    private RadioButton sport;
+
     private Button confirmButton;
+
+
 
     private String jsonStringNewCrag;
     private SharedPreferences.Editor editor;
@@ -72,15 +81,19 @@ public class AddClimbActivity extends ActionBarActivity {
         gradeBox = (TextView) findViewById(R.id.climbGrade);
         descriptionBox = (TextView) findViewById(R.id.descriptionTextView);
         takePhoto = (Button) findViewById(R.id.photoButton);
-        typeRadioButtons = (RadioGroup) findViewById(R.id.typeRadioGroup);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup123);
         confirmButton = (Button) findViewById(R.id.button4);
+
+        //RADIO BUTTONS
+        trad = (RadioButton) findViewById(R.id.radio0);
+        boulder = (RadioButton) findViewById(R.id.radio1);
+        sport = (RadioButton) findViewById(R.id.radio2);
+        winter = (RadioButton) findViewById(R.id.radio3);
 
         Intent intent = this.getIntent();
         if(intent != null) {
             cragName = intent.getExtras().getString("cragName");
         }
-
-
 
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +109,11 @@ public class AddClimbActivity extends ActionBarActivity {
                 climbName = nameBox.getText().toString();
                 climbGrade = gradeBox.getText().toString();
                 climbDescription = descriptionBox.getText().toString();
-                climbType = typeRadioButtons.getCheckedRadioButtonId();
+
+                climbType = ((RadioButton)findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+
+
+
 
                 JSONObject obj = null;
                 try {
@@ -123,7 +140,7 @@ public class AddClimbActivity extends ActionBarActivity {
                     try {
                         if(singleCrag.getString("name").equals(cragName)){
                             indexCragToUpdate = i;
-                            System.out.println("THE CRAGS index: " + indexCragToUpdate + " name: " + cragName);
+
                             break;
                         }
                     } catch (JSONException e) {
@@ -135,13 +152,13 @@ public class AddClimbActivity extends ActionBarActivity {
                 JSONArray climbsArray = new JSONArray();
                 try {
                     climbsArray = jsonMainArray.getJSONObject(indexCragToUpdate).getJSONArray("climbs");
-                    System.out.println("THIS ARRAY: " + climbsArray.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 try {
                     newClimb.put("name", climbName);
                     newClimb.put("grade", climbGrade);
+                    newClimb.put("type", climbType);
                     newClimb.put("description", climbDescription);
 
                     climbsArray.put(newClimb);

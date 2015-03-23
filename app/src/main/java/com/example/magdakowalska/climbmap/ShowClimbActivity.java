@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class ShowClimbActivity extends ActionBarActivity {
     private TextView name;
     private TextView grade;
     private TextView descr;
+    private TextView type;
+    private Button backButton;
 
     public static MyApplication ma;
     private Locations locations = new Locations();
@@ -33,6 +37,8 @@ public class ShowClimbActivity extends ActionBarActivity {
         name = (TextView) findViewById(R.id.nameClimb);
         grade = (TextView) findViewById(R.id.gradeDisplay);
         descr = (TextView) findViewById(R.id.descriptionView);
+        type = (TextView) findViewById(R.id.typeDisplay);
+        backButton = (Button) findViewById(R.id.backButton);
 
         Context c = ma.getInstance();
 
@@ -52,7 +58,15 @@ public class ShowClimbActivity extends ActionBarActivity {
 
         name.setText((String)climbToShow.get("name"));
         grade.setText((String)climbToShow.get("grade"));
+        type.setText((String)climbToShow.get("type"));
         descr.setText((String)climbToShow.get("description"));
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

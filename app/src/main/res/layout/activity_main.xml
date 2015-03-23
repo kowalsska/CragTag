@@ -27,7 +27,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MY LOCATIONS"
+        android:text="INSTRUCTIONS"
         android:id="@+id/buttonListLocation"
         android:layout_marginBottom="73dp"
         android:layout_alignParentBottom="true"

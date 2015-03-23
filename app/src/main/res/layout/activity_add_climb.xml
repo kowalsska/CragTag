@@ -82,33 +82,30 @@
         <RadioGroup
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/typeRadioGroup">
-         <TableRow>
+            android:id="@+id/radioGroup123">
             <RadioButton
+                android:id="@+id/radio0"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/trad"
-                android:text="TRAD" />
+                android:text="Trad" />
             <RadioButton
+                android:id="@+id/radio1"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sport"
-                android:text="SPORT" />
-         </TableRow>
-         <TableRow>
-            <RadioButton
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/bouldering"
-                android:text="BOULDERING" />
-            <RadioButton
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/winter"
-                android:text="WINTER" />
-         </TableRow>
+                android:text="Sport" />
 
-            </RadioGroup>
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Bouldering" />
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Winter" />
+        </RadioGroup>
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/confirmButton"

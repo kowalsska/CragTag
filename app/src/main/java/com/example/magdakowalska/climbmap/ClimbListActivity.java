@@ -57,21 +57,7 @@ public class ClimbListActivity extends ListActivity {
         climbsList = (ArrayList)locations.getDefaultCragLocationList().get(cragIndex).get("climbs");
         cragName = (String)locations.getDefaultCragLocationList().get(cragIndex).get("name");
 
-        ArrayList<HashMap<String, Object>> climbsListData = new ArrayList<HashMap<String, Object>>();
-
-        for (int i = 0; i < climbsList.size(); i++) {
-            HashMap<String, Object> climb = climbsList.get(i);
-            System.out.println("A SINGLE CLIMB : " + climb);
-            climbsListData.add(climb);
-        }
-
-        //System.out.println(climbsListData.toString());
-
-        // Adding menuItems to ListView
-        ListAdapter adapter = new SimpleAdapter(this, climbsListData,
-                R.layout.row_climb_layout, new String[] { "name" }, new int[] {R.id.singleClimbRow });
-
-        setListAdapter(adapter);
+        updateList();
 
         // Selecting single ListView item
         ListView lv = getListView();
@@ -83,7 +69,8 @@ public class ClimbListActivity extends ListActivity {
                 // Getting item index
                 int climbIndex = position;
                 // Starting new intent
-                Intent in = new Intent(getApplicationContext(), ShowClimbActivity.class);
+                Intent in = new Intent();
+                in.setClass(ClimbListActivity.this, ShowClimbActivity.class);
                 // Sending songIndex to PlayerActivity
                 in.putExtra("cragIndex", cragIndex);
                 in.putExtra("climbIndex", climbIndex);
@@ -105,6 +92,25 @@ public class ClimbListActivity extends ListActivity {
 
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        updateList();
+    }
+
+    public void updateList(){
+        ArrayList<HashMap<String, Object>> climbsListData = new ArrayList<HashMap<String, Object>>();
+
+        for (int i = 0; i < climbsList.size(); i++) {
+            HashMap<String, Object> climb = climbsList.get(i);
+            climbsListData.add(climb);
+        }
+        // Adding menuItems to ListView
+        ListAdapter adapter = new SimpleAdapter(this, climbsListData,
+                R.layout.row_climb_layout, new String[] { "name" }, new int[] {R.id.singleClimbRow });
+
+        setListAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

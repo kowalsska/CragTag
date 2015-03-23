@@ -69,12 +69,11 @@ public class ShowLocationActivity extends ActionBarActivity {
         location.setText((String)cragToShow.get("location").toString().substring(8));
         description.setText((String)cragToShow.get("description"));
 
-
-
         showClimbs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), ClimbListActivity.class);
+                Intent i = new Intent();
+                i.setClass(ShowLocationActivity.this, ClimbListActivity.class);
                 i.putExtra("cragIndex", cragIndex);
                 startActivity(i);
             }
