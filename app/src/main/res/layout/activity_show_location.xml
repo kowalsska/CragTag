@@ -14,7 +14,7 @@
     <LinearLayout
         android:id="@+id/name"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:orientation="horizontal">
@@ -81,7 +81,7 @@
             android:text="Location:"
             android:id="@+id/textView6" />
         <TextView
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="55.96972,-4.05389"
@@ -102,7 +102,7 @@
             android:text="Crag features:"
             android:id="@+id/textView8" />
         <TextView
-            android:layout_width="160dp"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/cragFestureDescr"
@@ -113,6 +113,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_below="@id/features"
         android:paddingBottom="20dp"
         android:id="@+id/photos">

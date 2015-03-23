@@ -81,8 +81,8 @@ public class AddCragActivity extends ActionBarActivity {
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, true);
             Location myLocation = locationManager.getLastKnownLocation(provider);
-            latitude = myLocation.getLatitude();
-            longitude = myLocation.getLongitude();
+            //latitude = myLocation.getLatitude();
+            //longitude = myLocation.getLongitude();
         }
 
 

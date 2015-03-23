@@ -19,11 +19,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="16dp"
             android:id="@+id/mainText"
             android:text="Climbs in this crag:" />
         <Button
-            android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="ADD CLIMB"
             android:id="@+id/addClimbButton"/>
