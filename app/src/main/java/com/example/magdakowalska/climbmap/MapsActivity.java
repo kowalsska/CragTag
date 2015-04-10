@@ -129,11 +129,10 @@ public class MapsActivity extends FragmentActivity {
 
         // Get the name of the best provider
         String provider = locationManager.getBestProvider(criteria, true);
-        System.out.println("PROVIDER: " + provider);
-
-        // Get Current Location
-        Location myLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
+        Location myLocation = locationManager.getLastKnownLocation(provider);
+        if(myLocation == null){
+            myLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        }
         // set map type
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 

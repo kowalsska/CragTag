@@ -49,7 +49,7 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:textSize="20dp"
             android:text="Faces:"/>

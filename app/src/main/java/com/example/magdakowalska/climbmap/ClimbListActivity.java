@@ -71,11 +71,11 @@ public class ClimbListActivity extends ListActivity {
                 // Starting new intent
                 Intent in = new Intent();
                 in.setClass(ClimbListActivity.this, ShowClimbActivity.class);
-                // Sending songIndex to PlayerActivity
+                // Sending cragIndex to ShowClimbActivity
                 in.putExtra("cragIndex", cragIndex);
                 in.putExtra("climbIndex", climbIndex);
                 startActivity(in);
-                // Closing PlayListView
+                // Closing ListView
                 finish();
             }
         });
